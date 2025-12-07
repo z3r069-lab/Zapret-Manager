@@ -14,33 +14,17 @@ sed -i "/^[[:space:]]*option NFQWS_OPT '/,\$d" /etc/config/zapret
 # Вставляем новый блок сразу после строки option NFQWS_OPT '
 cat <<EOF >> /etc/config/zapret
   option NFQWS_OPT '
-#${version} УДАЛИТЕ ЭТУ СТРОЧКУ, ЕСЛИ ВНОСИТЕ ИЗМЕННЕНИЯ В СТРАТЕГИЮ !!!
-
 --filter-tcp=443
 --hostlist=/opt/zapret/ipset/zapret-hosts-google.txt
---dpi-desync=fake,multisplit
---dpi-desync-split-pos=2,sld
+--dpi-desync=fake,multidisorder
+--dpi-desync-split-pos=10,midsld
+--dpi-desync-fake-tls=0x00000000
 --dpi-desync-fake-tls=0x0F0F0F0F
 --dpi-desync-fake-tls=/opt/zapret/files/fake/tls_clienthello_www_google_com.bin
---dpi-desync-fake-tls-mod=rnd,dupsid,sni=google.com
---dpi-desync-split-seqovl=2108
+--dpi-desync-fake-tls-mod=rnd,dupsid,sni=fonts.google.com
+--dpi-desync-split-seqovl=336
 --dpi-desync-split-seqovl-pattern=/opt/zapret/files/fake/tls_clienthello_www_google_com.bin
 --dpi-desync-fooling=badseq
---new
---filter-tcp=443
---hostlist-exclude=/opt/zapret/ipset/zapret-hosts-user-exclude.txt
---dpi-desync-any-protocol=1
---dpi-desync-cutoff=n5
---dpi-desync=multisplit
---dpi-desync-split-seqovl=582
---dpi-desync-split-pos=1
---dpi-desync-split-seqovl-pattern=/opt/zapret/files/fake/4pda.bin
---new
---filter-udp=443
---hostlist-exclude=/opt/zapret/ipset/zapret-hosts-user-exclude.txt
---dpi-desync=fake
---dpi-desync-repeats=4
---dpi-desync-fake-quic=/opt/zapret/files/fake/quic_initial_www_google_com.bin
 '
 EOF
 # Проверка и перезапись файла исключений пользователей
