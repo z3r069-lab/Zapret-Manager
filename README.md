@@ -30,7 +30,7 @@
 Подключитесь по SSH к роутеру и выполните команду:
 
 ```
-sh <(wget -O - https://raw.githubusercontent.com/StressOzz/Zapret-Manager/main/Zapret-Manager.sh)
+sh <(wget -O - https://raw.githubusercontent.com/z3r069-lab/Zapret-Manager/refs/heads/main/Zapret-Manager.sh)
 ```
 или
 
